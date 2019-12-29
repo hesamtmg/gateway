@@ -2,7 +2,9 @@
 
 namespace Larabookir\Gateway;
 
+use App\Model\GateWayConfig;
 use Illuminate\Support\Facades\File;
+
 use Illuminate\Support\ServiceProvider;
 
 class GatewayServiceProvider extends ServiceProvider
@@ -39,8 +41,11 @@ class GatewayServiceProvider extends ServiceProvider
 	 *
 	 * @return void
 	 */
-	public function boot()
+    public function boot()
+    
 	{
+            $this->app->bind('GateWayConfig', GateWayConfig::class);
+
         if (method_exists($this->provider, 'boot')) {
             return $this->provider->boot();
         }
